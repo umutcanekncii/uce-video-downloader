@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UCE Video Downloader Test Page</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #0f0f13;
+      color: #eeeeee;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #FF3366 0%, #FF9933 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+    p.subtitle {
+      color: #888899;
+      font-size: 1.1rem;
+      margin-top: 0;
+      margin-bottom: 40px;
+    }
+    .video-container {
+      background: #1a1a24;
+      border: 1px solid #2d2d3d;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+    .video-container h2 {
+      margin-top: 0;
+      font-size: 1.4rem;
+      color: #ffffff;
+      margin-bottom: 15px;
+    }
+    video {
+      width: 100%;
+      border-radius: 8px;
+      background: #000;
+      display: block;
+    }
+    .controls-panel {
+      margin-top: 20px;
+      display: flex;
+      gap: 15px;
+    }
+    button {
+      background: linear-gradient(135deg, #FF3366 0%, #FF9933 100%);
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255, 51, 102, 0.2);
+      transition: all 0.2s ease;
+    }
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 51, 102, 0.4);
+    }
+    button:active {
+      transform: translateY(0);
+    }
+    button.secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      box-shadow: none;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    button.secondary:hover {
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: none;
+    }
+    .info-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px dashed rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 40px;
+    }
+    .info-box h3 {
+      margin-top: 0;
+      color: #00FFCC;
+      font-size: 1.1rem;
+    }
+    .info-box ul {
+      padding-left: 20px;
+      margin-bottom: 0;
+    }
+    .info-box li {
+      margin-bottom: 10px;
+      color: #aaaaaa;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>UCE - Video Downloader Test Suite</h1>
+  <p class="subtitle">Use this local page to verify the video detector and UI floating components.</p>
+
+  <!-- Case 1: Standard Static Video -->
+  <div class="video-container">
+    <h2>1. Static HTML5 Video Source</h2>
+    <p style="color: #888899; font-size: 0.9rem; margin-top: -10px; margin-bottom: 15px;">
+      This video uses a direct MP4 link (Big Buck Bunny). Start playing the video to verify the floating UCE logo appears at the top-right corner.
+    </p>
+    <div style="position: relative;" id="static-player-wrapper">
+      <video id="static-video" controls preload="metadata" poster="https://upload.wikimedia.org/wikipedia/commons/c/c5/Big_Buck_Bunny_Trailer_400p.png">
+        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+
+  <!-- Case 2: Dynamically Injected Video -->
+  <div class="video-container">
+    <h2>2. Dynamic Video Injection</h2>
+    <p style="color: #888899; font-size: 0.9rem; margin-top: -10px; margin-bottom: 15px;">
+      Click the button below to dynamically inject a video player into the DOM. This tests the MutationObserver inside the content script.
+    </p>
+    <div id="dynamic-area">
+      <div style="padding: 40px; text-align: center; background: rgba(0,0,0,0.2); border-radius: 8px; border: 1px dashed rgba(255,255,255,0.05);" id="placeholder-box">
+        No video injected yet.
+      </div>
+    </div>
+    <div class="controls-panel">
+      <button id="btn-inject">Inject Video Player</button>
+      <button id="btn-clear" class="secondary">Clear Injected Player</button>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <h3>Testing Instructions</h3>
+    <ul>
+      <li><strong>Step 1:</strong> Go to <code>chrome://extensions</code> (or <code>edge://extensions</code> / <code>opera://extensions</code>) in your browser.</li>
+      <li><strong>Step 2:</strong> Toggle on <strong>Developer mode</strong> (developer toggle switch in the top-right corner).</li>
+      <li><strong>Step 3:</strong> Click <strong>Load unpacked</strong> and select the directory: <code>C:\Users\ARC\.gemini\antigravity\scratch\uce-video-downloader</code>.</li>
+      <li><strong>Step 4:</strong> Open or refresh this page. Play the video above.</li>
+      <li><strong>Step 5:</strong> Check if a small, glowing pink <strong>UCE</strong> circle button appears near the top-right corner of the video. Click it to view download options!</li>
+      <li><strong>Step 6:</strong> Try the extension on live sites: <strong>YouTube</strong>, <strong>Instagram</strong>, and <strong>Vimeo</strong> to verify they detect correctly.</li>
+    </ul>
+  </div>
+
+  <script>
+    const btnInject = document.getElementById('btn-inject');
+    const btnClear = document.getElementById('btn-clear');
+    const dynamicArea = document.getElementById('dynamic-area');
+    const placeholderBox = document.getElementById('placeholder-box');
+
+    btnInject.addEventListener('click', () => {
+      dynamicArea.innerHTML = `
+        <div style="position: relative; margin-top: 15px;">
+          <video id="dynamic-video" controls autoplay muted width="100%" style="border-radius: 8px;">
+            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" type="video/mp4">
+          </video>
+        </div>
+      `;
+    });
+
+    btnClear.addEventListener('click', () => {
+      dynamicArea.innerHTML = '';
+      dynamicArea.appendChild(placeholderBox);
+    });
+  </script>
+</body>
+</html>

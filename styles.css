@@ -1,0 +1,368 @@
+/* UCE - Video Downloader CSS Stylesheet */
+/* Premium Glassmorphic Design System */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap');
+
+/* Reset and container overrides to prevent host site pollution */
+.uce-vd-floating-btn,
+.uce-vd-dropdown,
+.uce-vd-toast {
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-shadow: none !important;
+  letter-spacing: normal !important;
+  line-height: normal !important;
+}
+
+/* 1. Floating Button */
+.uce-vd-floating-btn {
+  position: fixed;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FF3366 0%, #FF9933 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2147483647 !important;
+  box-shadow: 0 4px 15px rgba(255, 51, 102, 0.4), 
+              inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  pointer-events: auto !important;
+  user-select: none !important;
+}
+
+.uce-vd-floating-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(255, 51, 102, 0.6), 
+              0 0 10px rgba(255, 153, 51, 0.4),
+              inset 0 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+.uce-vd-floating-btn:active {
+  transform: scale(0.95);
+}
+
+.uce-vd-logo-circle {
+  color: #ffffff !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.uce-vd-logo-circle svg {
+  width: 20px;
+  height: 20px;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+  animation: uce-pulse-icon 3s infinite ease-in-out;
+}
+
+/* Badge dot when videos are ready */
+.uce-vd-badge-dot {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #00FFCC;
+  border: 2px solid #FF3366;
+  box-shadow: 0 0 8px #00FFCC;
+  animation: uce-glow 1.5s infinite alternate;
+}
+
+/* 2. Glassmorphic Dropdown Card */
+.uce-vd-dropdown {
+  position: fixed;
+  width: 320px;
+  background: rgba(15, 15, 20, 0.88) !important;
+  backdrop-filter: blur(20px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(160%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 
+              0 1px 0 rgba(255, 255, 255, 0.1) inset,
+              0 0 0 1px rgba(255, 255, 255, 0.05) !important;
+  z-index: 2147483647 !important;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: uce-slide-in 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  color: #eeeeee !important;
+}
+
+/* Header */
+.uce-vd-dropdown-header {
+  padding: 14px 16px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.uce-vd-dropdown-title {
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: #ffffff !important;
+  display: flex;
+  align-items: center;
+}
+
+.uce-vd-brand {
+  font-weight: 700 !important;
+  background: linear-gradient(135deg, #FF3366 0%, #FF9933 100%);
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  margin-right: 4px !important;
+}
+
+.uce-vd-status {
+  display: flex;
+  align-items: center;
+  font-size: 11px !important;
+  color: #888899 !important;
+  font-weight: 500 !important;
+}
+
+.uce-vd-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #00FFCC;
+  box-shadow: 0 0 6px #00FFCC;
+  margin-right: 6px !important;
+  display: inline-block;
+}
+
+/* List Area */
+.uce-vd-list {
+  max-height: 280px;
+  overflow-y: auto !important;
+  padding: 8px 0 !important;
+}
+
+/* Custom modern scrollbar for the list */
+.uce-vd-list::-webkit-scrollbar {
+  width: 6px;
+}
+.uce-vd-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+.uce-vd-list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+.uce-vd-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* List Item */
+.uce-vd-item {
+  padding: 10px 16px !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03) !important;
+  transition: background 0.2s ease;
+}
+
+.uce-vd-item:last-child {
+  border-bottom: none !important;
+}
+
+.uce-vd-item:hover {
+  background: rgba(255, 255, 255, 0.04) !important;
+}
+
+.uce-vd-item-info {
+  flex: 1;
+  min-width: 0;
+  margin-right: 12px !important;
+  text-align: left !important;
+}
+
+.uce-vd-item-title {
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  color: #ffffff !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  margin-bottom: 4px !important;
+}
+
+.uce-vd-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 6px !important;
+}
+
+/* Badges */
+.uce-vd-badge {
+  font-size: 9px !important;
+  font-weight: 700 !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  text-transform: uppercase !important;
+  color: #ffffff !important;
+  letter-spacing: 0.5px !important;
+}
+
+.uce-vd-badge-default { background: rgba(255, 255, 255, 0.15); }
+.uce-vd-badge-hd { background: linear-gradient(135deg, #FF9933 0%, #FF5533 100%); }
+.uce-vd-badge-audio { background: linear-gradient(135deg, #9933FF 0%, #6633FF 100%); }
+.uce-vd-badge-video-only { background: linear-gradient(135deg, #3399FF 0%, #3366FF 100%); }
+.uce-vd-badge-m3u8 { background: linear-gradient(135deg, #FF3399 0%, #FF3366 100%); }
+
+.uce-vd-quality-text {
+  font-size: 11px !important;
+  color: #aaaaaa !important;
+  font-weight: 500 !important;
+}
+
+.uce-vd-size {
+  font-size: 10px !important;
+  color: #666677 !important;
+  font-weight: 500 !important;
+}
+
+/* Actions */
+.uce-vd-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px !important;
+}
+
+.uce-vd-btn-action {
+  border: none !important;
+  outline: none !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #ffffff !important;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.uce-vd-btn-action:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+}
+
+.uce-vd-btn-dl:hover {
+  background: linear-gradient(135deg, #FF3366 0%, #FF9933 100%) !important;
+  box-shadow: 0 0 10px rgba(255, 51, 102, 0.4);
+}
+
+.uce-vd-btn-action svg {
+  transition: transform 0.2s ease;
+}
+
+.uce-vd-btn-action:hover svg {
+  transform: scale(1.1);
+}
+
+/* Empty State / Spinner */
+.uce-vd-empty-state {
+  padding: 30px 20px !important;
+  text-align: center !important;
+  color: #888899 !important;
+}
+
+.uce-vd-empty-state p {
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  color: #ffffff !important;
+  margin: 10px 0 2px 0 !important;
+}
+
+.uce-vd-empty-state span {
+  font-size: 10px !important;
+}
+
+.uce-vd-spinner {
+  width: 22px;
+  height: 22px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-top-color: #FF3366;
+  border-radius: 50%;
+  display: inline-block;
+  animation: uce-spin 0.8s linear infinite;
+}
+
+/* Footer */
+.uce-vd-dropdown-footer {
+  padding: 10px 16px !important;
+  background: rgba(0, 0, 0, 0.2) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+.uce-vd-footer-desc {
+  font-size: 9px !important;
+  color: #555566 !important;
+  text-align: center !important;
+}
+
+/* 3. Modern Toast Notification */
+.uce-vd-toast {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translate(-50%, 20px);
+  background: rgba(20, 20, 25, 0.95) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 33, 102, 0.3) !important;
+  padding: 8px 16px !important;
+  border-radius: 30px !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), 
+              0 0 10px rgba(255, 51, 102, 0.2) !important;
+  z-index: 2147483647 !important;
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  pointer-events: none !important;
+  white-space: nowrap !important;
+}
+
+.uce-vd-toast-show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* Keyframes */
+@keyframes uce-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes uce-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes uce-glow {
+  from {
+    box-shadow: 0 0 4px #00FFCC;
+  }
+  to {
+    box-shadow: 0 0 12px #00FFCC, 0 0 4px #00FFCC;
+  }
+}
+
+@keyframes uce-pulse-icon {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
